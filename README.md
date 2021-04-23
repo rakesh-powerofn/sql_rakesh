@@ -5,6 +5,11 @@ Ans -create table agent(agent_code char(4) primary key,agent_name varchar(25),co
     -create table customer(cust_code char(4) primary key,cust_name varchar(25),cust_city varchar(20),phone_no int unsigned,agent_code char(4), FOREIGN KEY(agent_code) references agent(agent_code));
     -insert into customer values('C003','Archana','Banglore',945230981,'A004');
  
+Inserting comments:
+--Single line comment
+/*The following table has a foreign key
+Referencing AGENT table*/
+
  2. Alter the table agent , Add a new Column called "Commission".
  Ans -alter table agent add Commission decimal(3,2);
      -update agent set Commission='0.2' where agent_code='A001';
