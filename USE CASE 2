@@ -8,6 +8,15 @@ SELECT SNAME, NAME, PACKAGE FROM TEMP WHERE PACKAGE=(SELECT MAX(PACKAGE) FROM TE
 
 					
 2) HOD of ECE department wants to know placement details of all his department students, Write a SQL query for this scenario						
+
+
+
+
+3) Write a SQL query to display total number of students each company has hired
+ANS:
+SELECT C.NAME , COUNT(P.S_ID) AS NO_OF_STUDENTS FROM PLACEMENTS P, COMPANY C WHERE C.ID = P.C_ID 
+GROUP BY C_ID;
+						
 5) Write a SQL query which displays list of companies which conducted interview till date
 ANS:
 SELECT NAME,INTERVIEW_DATE 
