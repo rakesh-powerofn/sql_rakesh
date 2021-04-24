@@ -13,3 +13,8 @@ ANS:
 SELECT NAME,INTERVIEW_DATE 
     -> FROM COMPANY
     -> WHERE INTERVIEW_DATE < '2020-12-31';
+    
+7)Accenture would like to shortlist candidates with CGPA > 7 and no need of student who already got placed, write SQL query that statisfies their given criteria								
+ANS:
+SELECT SNAME AS STUDENT,DEPARTMENT,CGPA FROM STUDENT where ID NOT IN (SELECT S_ID FROM PLACEMENTS
+) and CGPA > 7;
