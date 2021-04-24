@@ -1,1 +1,10 @@
+						
+1) Write a SQL query to find student who got placed with highest package, along with the name of the company.
+ANS:
+CREATE TABLE TEMP AS (SELECT STUDENT.SNAME,COMPANY.NAME,PLACEMENTS.PACKAGE FROM PLACEMENTS JOIN S
+TUDENT ON PLACEMENTS.S_ID = STUDENT.ID JOIN COMPANY ON PLACEMENTS.C_ID=COMPANY.ID);
++
+SELECT SNAME, NAME, PACKAGE FROM TEMP WHERE PACKAGE=(SELECT MAX(PACKAGE) FROM TEMP);
 
+					
+2) HOD of ECE department wants to know placement details of all his department students, Write a SQL query for this scenario						
