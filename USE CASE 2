@@ -8,3 +8,8 @@ SELECT SNAME, NAME, PACKAGE FROM TEMP WHERE PACKAGE=(SELECT MAX(PACKAGE) FROM TE
 
 					
 2) HOD of ECE department wants to know placement details of all his department students, Write a SQL query for this scenario						
+5) Write a SQL query which displays list of companies which conducted interview till date
+ANS:
+SELECT NAME,INTERVIEW_DATE 
+    -> FROM COMPANY
+    -> WHERE INTERVIEW_DATE < '2020-12-31';
