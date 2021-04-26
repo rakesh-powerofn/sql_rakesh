@@ -7,23 +7,35 @@ TUDENT ON PLACEMENTS.S_ID = STUDENT.ID JOIN COMPANY ON PLACEMENTS.C_ID=COMPANY.I
 SELECT SNAME, NAME, PACKAGE FROM TEMP WHERE PACKAGE=(SELECT MAX(PACKAGE) FROM TEMP);
 
 					
-2) HOD of ECE department wants to know placement details of all his department students, Write a SQL query for this scenario						
+2) HOD of ECE department wants to know placement details of all his department students, Write a SQL query for this scenario
+ANS:
 
-
-
+select S.name as STUDENT,S.department,(case when S.id in (select s_id from placement) then 'YES' else 'NO' end) as PLACED,C.name as COMPANY,P.pakage from student S left join placement P on S.id=P.s_id left join company C on P.c_id=C.id where S.department='ECE';
 
 3) Write a SQL query to display total number of students each company has hired
 ANS:
 SELECT C.NAME , COUNT(P.S_ID) AS NO_OF_STUDENTS FROM PLACEMENTS P, COMPANY C WHERE C.ID = P.C_ID 
 GROUP BY C_ID;
-						
+
+4) Write a SQL query which displays list of companies conducted interview in month of september				
+ANS:
+select monthname(interview_date) as Month ,name as Company from company 
+where monthname(interview_date)='September';
+
 5) Write a SQL query which displays list of companies which conducted interview till date
 ANS:
 SELECT NAME,INTERVIEW_DATE 
     -> FROM COMPANY
     -> WHERE INTERVIEW_DATE < '2020-12-31';
-    
+							
+6) Dean would like to know the students who got more than one placement offer, write a SQL query for this scenario								   
+ANS:
+select S.name as STUDENT,C.name as COMPANY FROM student S JOIN placement P ON S.id=P.s_id JOIN company C ON P.c_id=C.id WHERE S.id in (select s_id from placement group by s_id having count(*)>1);
+
 7)Accenture would like to shortlist candidates with CGPA > 7 and no need of student who already got placed, write SQL query that statisfies their given criteria								
 ANS:
 SELECT SNAME AS STUDENT,DEPARTMENT,CGPA FROM STUDENT where ID NOT IN (SELECT S_ID FROM PLACEMENTS
 ) and CGPA > 7;
+8)Yamuna decided that she will attend the interview of companies who's location name starts with 'B', write a query that gets the list of company she can attend															
+ANS:
+select name as NAME ,location as LOCATION from company where location like 'B%';
