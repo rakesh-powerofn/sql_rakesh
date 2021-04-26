@@ -6,7 +6,8 @@ CONSUMPTION decimal(4,3) not null
 )
 ;
 q1)
-load data local infile '/downloads usecase 3.xlsx' into table usecase3 fields terminated by ','  ignore 1 rows;
+load data local infile '/home/rakesh/usecase.csv' into table usecase3 fields terminated by '
+,'  ignore 1 rows;
 q2)
 select TIME,DEVICE,count(TIME) from usecase3 group by DEVICE,TIME having count(TIME)>1;
 q3)
