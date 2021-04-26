@@ -1,0 +1,30 @@
+create table 
+usecase3
+(TIME timestamp not null,
+DEVICE varchar(2) not null,
+CONSUMPTION decimal(4,3) not null
+)
+;
+q1)
+load data local infile '/home/aravinth/Usecase 3 - Sheet1.csv' into table usecase3 fields terminated by ','  ignore 1 rows;
+q2)
+select TIME,DEVICE,count(TIME) from usecase3 group by DEVICE,TIME having count(TIME)>1;
+q3)
+select min(TIME), max(TIME)
+from (select TIME, row_number() over (order by TIME) as missing
+from usecase3
+) usecase3
+group by (TIME - missing);
+select min(TIME), max(TIME)
+from (select TIME, row_number() over (partion by DEVICE order by TIME) as missing
+      from usecase3
+     ) usecase3
+group by (DEVICE - missing);
+q4)
+select DEVICE,HOUR(TIME),sum(CONSUMPTION) from usecase3 group by (HOUR(TIME));
+q5)
+select DEVICE,HOUR(TIME),max(CONSUMPTION) from usecase3  group by DEVICE,HOUR(TIME);
+select DEVICE,CONSUMPTION from usecase3 where CONSUMPTION=(select max(CONSUMPTION) from usecase3) group by DEVICE;
+Shared in
+
+
