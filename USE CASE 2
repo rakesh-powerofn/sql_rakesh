@@ -10,7 +10,10 @@ SELECT SNAME, NAME, PACKAGE FROM TEMP WHERE PACKAGE=(SELECT MAX(PACKAGE) FROM TE
 2) HOD of ECE department wants to know placement details of all his department students, Write a SQL query for this scenario
 ANS:
 
-select S.name as STUDENT,S.department,(case when S.id in (select s_id from placement) then 'YES' else 'NO' end) as PLACED,C.name as COMPANY,P.pakage from student S left join placement P on S.id=P.s_id left join company C on P.c_id=C.id where S.department='ECE';
+select S.SNAME as STUDENT,S.DEPARTMENT,(case when S.ID in (select S_ID
+  from PLACEMENTS) then 'YES' else 'NO' end) as PLACED,C.NAME as COMPANY,P.PACKAGE from STUDE
+NT S left join PLACEMENTS P on S.ID=P.S_ID left join COMPANY C on P.C_ID=C.ID where S.DEPARTM
+ENT='ECE';
 
 3) Write a SQL query to display total number of students each company has hired
 ANS:
@@ -30,7 +33,7 @@ SELECT NAME,INTERVIEW_DATE
 							
 6) Dean would like to know the students who got more than one placement offer, write a SQL query for this scenario								   
 ANS:
-select S.name as STUDENT,C.name as COMPANY FROM student S JOIN placement P ON S.id=P.s_id JOIN company C ON P.c_id=C.id WHERE S.id in (select s_id from placement group by s_id having count(*)>1);
+select S.NAME as STUDENT,C.NAME as COMPANY FROM STUDENT S JOIN PLACEMENT P ON S.ID=P.S_ID JOIN COMPANY C ON P.C_ID=C.ID WHERE S.ID in (select S_ID from PLACEMENT group by S_ID having count(*)>1);
 
 7)Accenture would like to shortlist candidates with CGPA > 7 and no need of student who already got placed, write SQL query that statisfies their given criteria								
 ANS:
